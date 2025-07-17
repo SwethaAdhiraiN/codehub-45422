@@ -62,15 +62,15 @@ export function AuthProvider({ children }) {
 
   // PUBLIC_INTERFACE
   /**
-   * signup(email, password, mobile)
-   * Registers a new user, sending mobile, email, password to backend.
+   * signup(username, email, password, mobile)
+   * Registers a new user, sending username, email, password, and mobile_number to backend.
    * All params required.
    */
-  const signup = async (email, password, mobile = undefined) => {
+  const signup = async (username, email, password, mobile) => {
     setLoading(true);
     try {
-      const body = { email, password };
-      if (mobile !== undefined) body.mobile = mobile;
+      // Django backend requires username, password, mobile_number (REQUIRED), email (optional)
+      const body = { username, password, mobile_number: mobile, email };
       const res = await fetch(`${API_URL}/auth/register/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
