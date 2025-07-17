@@ -58,13 +58,20 @@ export function AuthProvider({ children }) {
   };
 
   // PUBLIC_INTERFACE
-  const signup = async (email, password) => {
+  /**
+   * signup(email, password, mobile)
+   * Registers a new user, sending mobile, email, password to backend.
+   * All params required.
+   */
+  const signup = async (email, password, mobile = undefined) => {
     setLoading(true);
     try {
+      const body = { email, password };
+      if (mobile !== undefined) body.mobile = mobile;
       const res = await fetch(`${API_URL}/auth/register/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify(body)
       });
       if (!res.ok) throw new Error("Sign up failed");
       const data = await res.json();
