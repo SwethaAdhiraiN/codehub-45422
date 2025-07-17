@@ -13,6 +13,17 @@ This project provides a minimal React template with a clean, modern UI and minim
 
 In the project directory, you can run:
 
+### Environment variables
+
+To configure the backend API URL, create a `.env` file at the root of this folder:
+
+```
+REACT_APP_API_BASE_URL=http://localhost:8000/api
+```
+
+Change the value according to your backend deployment for local dev, staging, or production.  
+Make sure to restart `npm start` after updating `.env`.
+ 
 ### `npm start`
 
 Runs the app in development mode.\
