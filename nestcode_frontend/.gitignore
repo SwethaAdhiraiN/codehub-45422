@@ -1,0 +1,4 @@
+# Ignore environment files (each developer should set their own)
+.env
+.env.*
+>>>>>>> REPLACE
