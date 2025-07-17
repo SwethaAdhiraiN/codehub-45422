@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { apiUrl } from "../api";
 
 /**
  * PUBLIC_INTERFACE
@@ -16,7 +17,7 @@ export default function Feedback() {
   const handleSubmit = e => {
     e.preventDefault();
     setStatus("Sending...");
-    fetch("/api/feedback/", {
+    fetch(apiUrl("/feedback/"), {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

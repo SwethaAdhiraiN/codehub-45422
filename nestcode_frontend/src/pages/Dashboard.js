@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../auth/AuthContext";
+import { apiUrl } from "../api";
 
 /**
  * PUBLIC_INTERFACE
@@ -11,9 +12,9 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch user modules (will need endpoint from backend)
+    // Fetch user modules (using backend API)
     const token = localStorage.getItem("authToken");
-    fetch("/api/user/modules/", {
+    fetch(apiUrl("/user/modules/"), {
       headers: { Authorization: `Bearer ${token}` }
     }).then(r => r.json())
       .then(setModules).finally(() => setLoading(false));

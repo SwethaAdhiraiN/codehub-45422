@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { apiUrl } from "../api";
 
 /**
  * PUBLIC_INTERFACE
@@ -19,8 +20,8 @@ export default function Contribute() {
   const handleSubmit = e => {
     e.preventDefault();
     setStatus("Submitting...");
-    // Call backend to contribute a new module (replace '/api/...' with actual endpoint)
-    fetch("/api/modules/", {
+    // Call backend to contribute a new module
+    fetch(apiUrl("/modules/"), {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

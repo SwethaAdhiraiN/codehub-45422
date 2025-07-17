@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link, Routes, Route, useNavigate } from "react-router-dom";
+import { apiUrl } from "../api";
 
 /**
  * PUBLIC_INTERFACE
@@ -14,7 +15,7 @@ export default function ModuleDetail() {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`/api/modules/${moduleId}/`)
+    fetch(apiUrl(`/modules/${moduleId}/`))
       .then(r => r.json())
       .then(data => {
         setModule(data);

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { apiUrl } from "../api";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -17,12 +18,12 @@ export default function Explorer() {
 
   useEffect(() => {
     setLoading(true);
-    let url = "/api/modules/?";
+    let url = "/modules/?";
     if (query.get("q")) url += `q=${encodeURIComponent(query.get("q"))}&`;
     if (filters.language) url += `language=${encodeURIComponent(filters.language)}&`;
     if (filters.framework) url += `framework=${encodeURIComponent(filters.framework)}&`;
     if (filters.category) url += `category=${encodeURIComponent(filters.category)}&`;
-    fetch(url)
+    fetch(apiUrl(url))
       .then(r => r.json())
       .then(setModules)
       .finally(() => setLoading(false));

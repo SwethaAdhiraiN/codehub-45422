@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { apiUrl } from "../api";
 
 /**
  * PUBLIC_INTERFACE
@@ -23,7 +24,7 @@ export default function Upload() {
     const data = new FormData();
     data.append("file", form.file);
     data.append("notes", form.notes || "");
-    fetch("/api/uploads/", {
+    fetch(apiUrl("/uploads/"), {
       method: "POST",
       headers: { Authorization: "Bearer " + localStorage.getItem("authToken") },
       body: data
