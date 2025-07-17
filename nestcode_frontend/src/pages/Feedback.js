@@ -17,6 +17,7 @@ export default function Feedback() {
   const handleSubmit = e => {
     e.preventDefault();
     setStatus("Sending...");
+    // The backend expects "nest" (not "module"), and "rating" should be sent as "score" per OpenAPI.
     fetch(apiUrl("/feedback/"), {
       method: "POST",
       headers: {
@@ -24,9 +25,9 @@ export default function Feedback() {
         Authorization: "Bearer " + localStorage.getItem("authToken")
       },
       body: JSON.stringify({
-        module: moduleId,
-        rating,
-        comment
+        nest: moduleId,
+        message: comment,
+        score: rating
       })
     })
       .then(r => r.ok ? r.json() : Promise.reject("Failed"))
