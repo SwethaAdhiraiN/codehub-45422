@@ -3,8 +3,9 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 /**
  * This should be configured for your Django backend endpoints.
  * Uses the standard environment variable REACT_APP_API_BASE_URL for flexibility.
+ * Must use HTTPS for cross-origin with deployed backend!
  */
-const API_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:8000/api";
+const API_URL = process.env.REACT_APP_API_BASE_URL || "https://vscode-internal-690-beta.beta01.cloud.kavia.ai:3001/api";
 
 const AuthContext = createContext();
 
